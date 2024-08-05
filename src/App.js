@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import TitleAndSubtitle from "./components/TitleAndSubtitle/TitleAndSubtitle";
+import Page404 from "./pages/Page404/Page404";
+import Home from "./pages/Home/Home";
+import InformationsBasics from "./pages/informationsBasics/informationsBasics";
+import "./index.css"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <ToastContainer />
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <TitleAndSubtitle title="Início" /> <Home />
+              </>
+            }
+          />
+          <Route
+            path="/informationsBasics"
+            element={
+              <>
+                <TitleAndSubtitle title="Informações Básicas" /> <InformationsBasics />
+              </>
+            }
+          />
+          <Route
+            path="*"
+            element={
+                <Page404 />
+            }
+          />
+        </Routes>
+      </Router>
+    </main>
   );
 }
 
