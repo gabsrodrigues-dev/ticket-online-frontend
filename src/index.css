@@ -21,16 +21,20 @@ body {
   font-family: "Museo", sans-serif;
 }
 
+input {
+  outline: none
+}
+
 h1 {
   font-size: 2.25rem;
   line-height: 1;
 }
 
-h1, p, span {
+h1, p, span, label {
   font-weight: 700;
 }
 
-span {
+span, label {
   color: #0C3B2E
 }
 

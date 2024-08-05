@@ -6,12 +6,12 @@ export default function Home() {
     window.location.href = "/informationsBasics";
   };
   return (
-    <main className="first-mobile-align">
-      <main className="second-mobile-align flex flex-col justify-between gap-6 h-full text-white bg-[#6D9773]">
-        <div className="flex min-h-[50vh] w-full justify-center items-center">
+    <main className="first-mobile-align bg-[#6D9773]">
+      <main className="second-mobile-align flex flex-col h-full justify-between gap-6 text-white bg-[#6D9773]">
+        <div className="flex w-full h-full justify-center items-center min-h-[30vh]">
           <img src="/images/logos/colored-logo.png" className="max-w-[150px]" />
         </div>
-        <div className="flex flex-col w-full gap-24">
+        <div className="flex flex-col w-full h-fit gap-20">
           <div className="flex flex-col w-full gap-3">
             <h1>Olá, tudo bem?</h1>
             <p>
@@ -22,14 +22,14 @@ export default function Home() {
               Adquira o seu lanche agora mesmo!
             </p>
           </div>
-          <div className="flex flex-col w-full gap-6">
+          <div className="flex flex-col w-full gap-10">
           <ButtonComponent
             text="Começar"
             textColor="#6D9773"
             backgroundColor="#FFF"
             onClick={nextStep}
           />
-          <StepsCounter actualStep={1} totalSteps={5} stepsBackground={'#f00'} conclusedStepsBackground={'#0ff'} />
+          <StepsCounter actualStep={1} totalSteps={5} stepsBackground={'#D9D9D9'} conclusedStepsBackground={'#7CBA3D'} />
         </div>
         </div>
       </main>
