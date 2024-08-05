@@ -31,7 +31,7 @@ export default function InformationsBasics() {
                 
                     <div className="flex flex-col gap-3">
                         <InputComponent label="Seu nome completo *" placeholder="Digite o seu nome"/>
-                        <InputComponent label="Telefone" placeholder="Digite seu telefone"/>
+                        <InputComponent type="phone" label="Telefone" placeholder="Digite seu telefone"/>
                     </div>
                 </div>
 
