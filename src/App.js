@@ -3,7 +3,9 @@ import { ToastContainer } from "react-toastify";
 import TitleAndSubtitle from "./components/TitleAndSubtitle/TitleAndSubtitle";
 import Page404 from "./pages/Page404/Page404";
 import Home from "./pages/Home/Home";
-import InformationsBasics from "./pages/informationsBasics/informationsBasics";
+import BasicInfos from "./pages/basicInfos/basicInfos";
+import Products from "./pages/products/Products"
+import ProductsPurchase from "./pages/productPurchase/ProductPurchase";
 import "./index.css"
 
 function App() {
@@ -21,10 +23,26 @@ function App() {
             }
           />
           <Route
-            path="/informationsBasics"
+            path="/basicInfos"
             element={
               <>
-                <TitleAndSubtitle title="Informações Básicas" /> <InformationsBasics />
+                <TitleAndSubtitle title="Informações Básicas" /> <BasicInfos />
+              </>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <>
+                <TitleAndSubtitle title="Produtos" /> <Products />
+              </>
+            }
+          />
+          <Route
+            path="/order"
+            element={
+              <>
+                <TitleAndSubtitle title="Pedido" /> <ProductsPurchase />
               </>
             }
           />

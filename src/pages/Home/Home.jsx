@@ -3,7 +3,7 @@ import StepsCounter from "../../components/stepsCounter/stepsCounter";
 
 export default function Home() {
   const nextStep = () => {
-    window.location.href = "/informationsBasics";
+    window.location.href = "/basicInfos";
   };
   return (
     <main className="first-mobile-align bg-[#6D9773]">
