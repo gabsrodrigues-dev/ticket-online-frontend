@@ -1,4 +1,4 @@
-export default function CardProduct({
+export default function ProductCard({
   title,
   description,
   price

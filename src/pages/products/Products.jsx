@@ -1,6 +1,6 @@
-import ButtonComponent from "../../components/button/button";
-import StepsCounter from "../../components/stepsCounter/stepsCounter";
-import CardProduct from "../../components/cardProduct/cardProduct"
+import ButtonComponent from "../../components/Button/ButtonComponent";
+import StepsCounter from "../../components/StepsCounter/StepsCounter";
+import ProductCard from "../../components/ProductCard/ProductCard"
 
 export default function Products() {
   const nextStep = () => {
@@ -12,7 +12,7 @@ export default function Products() {
         <section className="flex flex-col gap-6">
           <span className="text-2xl font-bold">Cardápio do dia</span>
           <span className="text-base font-medium">Antes de fazer o seu pedido, precisamos que você nos informe alguns dados</span>
-          <CardProduct 
+          <ProductCard 
             title = "Dogão dos Jovens"
             description = "Cachorro-quente com refrigerante"
             price = "0,00"

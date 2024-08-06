@@ -1,10 +1,10 @@
-import InputComponent from "../../components/input/input"
-import ButtonComponent from "../../components/button/button";
-import SelectComponent from "../../components/select/select";
+import InputComponent from "../../components/Input/InputComponent"
+import ButtonComponent from "../../components/Button/ButtonComponent";
+import SelectComponent from "../../components/Select/SelectComponent";
 import { useState } from "react";
-import StepsCounter from "../../components/stepsCounter/stepsCounter";
+import StepsCounter from "../../components/StepsCounter/StepsCounter";
 import { EncryptedLocalStorage } from "../../services/localStorage/localStorage.service";
-import { ToastifyElement } from "../../components/toastify/ToastifyElement";
+import { ToastifyElement } from "../../components/Toastify/ToastifyElement";
 
 export default function BasicInfos() {
     const [selectsState, setSelectsState] = useState({

@@ -1,5 +1,5 @@
-import ButtonComponent from "../../components/button/button";
-import StepsCounter from "../../components/stepsCounter/stepsCounter";
+import ButtonComponent from "../../components/Button/ButtonComponent";
+import StepsCounter from "../../components/StepsCounter/StepsCounter";
 
 export default function Home() {
   const nextStep = () => {
