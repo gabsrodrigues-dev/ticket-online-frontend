@@ -5,8 +5,8 @@ export default function SelectComponent({ label, id, onChange }) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
+    onChange(id, !isSelected);
     setIsSelected(!isSelected);
-    onChange(id, isSelected);
   };
 
   return (

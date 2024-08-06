@@ -18,7 +18,7 @@ export default function InputComponent({
             className="bg-[#f8faf9] w-full"
             placeholder={placeholder}
             onChange={onInputChange}
-            mask="(00) 0 0000-0000"
+            mask="(00) 00000-0000"
           />
         ) : (
           <input

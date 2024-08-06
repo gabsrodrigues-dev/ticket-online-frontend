@@ -4,6 +4,7 @@ import SelectComponent from "../../components/select/select";
 import { useState } from "react";
 import StepsCounter from "../../components/stepsCounter/stepsCounter";
 import { EncryptedLocalStorage } from "../../services/localStorage/localStorage.service";
+import { ToastifyElement } from "../../components/toastify/ToastifyElement";
 
 export default function BasicInfos() {
     const [selectsState, setSelectsState] = useState({
@@ -32,7 +33,14 @@ export default function BasicInfos() {
     }
 
     const nextStep = async () => {
-        await EncryptedLocalStorage.put("basicInfos", inputInfos);
+        let basicInfos = inputInfos;
+        basicInfos.privacity = selectsState.privacity;
+        basicInfos.updates = selectsState.updates;
+        if (basicInfos.name === "") return ToastifyElement("error","O nome não pode estar vazio.");
+        if (basicInfos.phone === "") return ToastifyElement("error", "O telefone não pode estar vazio.");
+        if (basicInfos.phone.length < 15) return ToastifyElement("error", "O telefone está incompleto.");
+        if (!basicInfos.privacity) return ToastifyElement("error", "Você precisa concordar com os Termos e Condições e a Política de Privacidade.");
+        await EncryptedLocalStorage.put("basicInfos", );
         window.location.href = "/products";
     };
 
@@ -45,7 +53,7 @@ export default function BasicInfos() {
         <main className="first-mobile-align h-full">
             <main className="second-mobile-align flex flex-col h-full justify-between">
                 <div className="flex flex-col gap-6">
-                    <h1 className="text-md">Antes de fazer o seu pedido, precisamos que você nos informe alguns dados.</h1>
+                    <span className="text-md">Antes de fazer o seu pedido, precisamos que você nos informe alguns dados.</span>
                 
                     <div className="flex flex-col gap-3">
                         <InputComponent name="name" label="Seu nome *" placeholder="Digite o seu nome" onInputChange={handleInputChange} />
