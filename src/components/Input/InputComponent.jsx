@@ -17,8 +17,10 @@ export default function InputComponent({
             name={name}
             className="bg-[#f8faf9] w-full"
             placeholder={placeholder}
-            onChange={onInputChange}
             mask="(00) 00000-0000"
+            onAccept={(value, mask) => {
+              onInputChange({ target: { name, value } });
+            }}
           />
         ) : (
           <input

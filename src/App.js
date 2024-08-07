@@ -39,7 +39,7 @@ function App() {
             }
           />
           <Route
-            path="/order"
+            path="/order/start/:productAlias"
             element={
               <>
                 <TitleAndSubtitle title="Pedido" /> <ProductsPurchase />

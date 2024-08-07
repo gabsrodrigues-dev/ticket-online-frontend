@@ -7,7 +7,7 @@ export default function Products() {
   return (
     <main className="first-mobile-align bg-[#6D9773]">
       <main className="second-mobile-align flex flex-col h-full justify-between gap-6 bg-[#EEEEEE]">
-        <section className="flex flex-col h-full gap-6">
+        <section className="flex flex-col h-full gap-12">
           <Header />
           <section className="flex flex-col h-full gap-6 bg-white rounded-2xl p-4">
             <div className="flex flex-col">
@@ -18,7 +18,7 @@ export default function Products() {
             </div>
             <ProductCard
               title="Dogão dos Jovens"
-              redirect="/product/dogo-dos-jovens"
+              redirect="/order/start/dogo-dos-jovens"
               description="Cachorro-quente com refrigerante"
               price="0,00"
             />
