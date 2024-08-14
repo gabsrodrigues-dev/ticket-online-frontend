@@ -5,7 +5,8 @@ export default function InputComponent({
   label,
   placeholder,
   type,
-  onInputChange
+  onInputChange,
+  value
 }) {
   return (
     <div className="w-full flex flex-col gap-1">
@@ -17,15 +18,19 @@ export default function InputComponent({
             name={name}
             className="bg-[#f8faf9] w-full"
             placeholder={placeholder}
-            onChange={onInputChange}
-            mask="(00) 0 0000-0000"
+            mask="(00) 00000-0000"
+            value={value}
+            onAccept={(value, mask) => {
+              onInputChange({ target: { name, value } });
+            }}
           />
         ) : (
           <input
-            type="text"
+            type={type}
             name={name}
             className="bg-[#f8faf9] w-full"
             onChange={onInputChange}
+            value={value}
             placeholder={placeholder}
           />
         )}

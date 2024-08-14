@@ -1,5 +1,5 @@
-import ButtonComponent from "../../components/button/button";
-import StepsCounter from "../../components/stepsCounter/stepsCounter";
+import ButtonComponent from "../../components/Button/ButtonComponent";
+import StepsCounter from "../../components/StepsCounter/StepsCounter";
 
 export default function Home() {
   const nextStep = () => {
@@ -11,7 +11,7 @@ export default function Home() {
         <div className="flex w-full h-full justify-center items-center min-h-[30vh]">
           <img src="/images/logos/colored-logo.png" className="max-w-[150px]" />
         </div>
-        <div className="flex flex-col w-full h-fit gap-20">
+        <div className="flex flex-col w-full h-fit gap-12">
           <div className="flex flex-col w-full gap-3">
             <h1>Olá, tudo bem?</h1>
             <p>
