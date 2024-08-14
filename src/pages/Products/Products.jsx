@@ -7,12 +7,12 @@ export default function Products() {
   return (
     <main className="first-mobile-align bg-[#6D9773]">
       <main className="second-mobile-align flex flex-col h-full justify-between gap-6 bg-[#EEEEEE]">
-        <section className="flex flex-col h-full gap-12">
+        <section className="flex flex-col h-full gap-10">
           <Header />
-          <section className="flex flex-col h-full gap-6 bg-white rounded-2xl p-4">
-            <div className="flex flex-col">
+          <section className="flex flex-col h-full gap-6 bg-white rounded-xl p-4">
+            <div className="flex flex-col gap-3">
             <span className="text-2xl font-bold">Cardápio do dia</span>
-            <span className="text-md">
+            <span className="text-md leading-tight">
               Escolha entre as opções disponíveis.
             </span>
             </div>

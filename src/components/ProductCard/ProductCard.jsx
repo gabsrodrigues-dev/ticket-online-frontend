@@ -7,7 +7,7 @@ export default function ProductCard({
   price
 }) {
   return (
-    <Link to={redirect} className="w-full flex flex-col shadow-md rounded-2xl overflow-hidden">
+    <Link to={redirect} className="w-full flex flex-col shadow-md rounded-xl overflow-hidden">
       <div className="min-h-40 bg-gray-300">
         {/* <img src={image} alt={title} className="w-full h-full object-cover" /> */}
         <div className="w-full h-full bg-gray-300"></div>

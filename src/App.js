@@ -7,6 +7,7 @@ import BasicInfos from "./pages/BasicInfos/BasicInfos";
 import Products from "./pages/Products/Products"
 import ProductsPurchase from "./pages/ProductPurchase/ProductPurchase";
 import "./index.css"
+import Order from "./pages/Order/Order";
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
             element={
               <>
                 <TitleAndSubtitle title="Pedido" /> <ProductsPurchase />
+              </>
+            }
+          />
+          <Route
+            path="/order/payment/:checkoutId"
+            element={
+              <>
+                <TitleAndSubtitle title="Pedido" /> <Order />
               </>
             }
           />

@@ -1,7 +1,7 @@
 import InputComponent from "../../components/Input/InputComponent";
 import ButtonComponent from "../../components/Button/ButtonComponent";
 import SelectComponent from "../../components/Select/SelectComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StepsCounter from "../../components/StepsCounter/StepsCounter";
 import { EncryptedLocalStorage } from "../../services/localStorage/localStorage.service";
 import { ToastifyElement } from "../../components/Toastify/ToastifyElement";
@@ -47,13 +47,24 @@ export default function BasicInfos() {
         "error",
         "Você precisa concordar com os Termos e Condições e a Política de Privacidade."
       );
-    await EncryptedLocalStorage.put("basicInfos");
-    window.location.href = "/products";
+    await EncryptedLocalStorage.put("basicInfos",basicInfos);
+    // window.location.href = "/products";
+    window.location.href = "/order/start/strogonoff-com-refrigerante";
   };
 
   const cancelPurchase = () => {
     window.location.href = "/";
   };
+
+  useEffect(()=>{
+    const loadInfos = async ()=>{
+      const basicInfos = await EncryptedLocalStorage.get("basicInfos");
+      if(basicInfos){
+        setInputInfos(basicInfos);
+      }
+    }
+    loadInfos();
+  },[])
 
   return (
     <main className="first-mobile-align h-full">
@@ -61,7 +72,7 @@ export default function BasicInfos() {
       <div className="flex w-full h-full justify-center items-center">
           <img src="/images/logos/colored-logo.png" className="max-w-[150px]" />
         </div>
-          <span className="text-md">
+          <span className="text-md leading-tight">
             Antes de fazer o seu pedido, precisamos que você nos informe alguns
             dados.
           </span>
@@ -70,7 +81,9 @@ export default function BasicInfos() {
             <InputComponent
               name="name"
               label="Seu nome *"
+              type="text"
               placeholder="Digite o seu nome"
+              value={inputInfos.name} 
               onInputChange={handleInputChange}
             />
             <InputComponent
@@ -78,6 +91,7 @@ export default function BasicInfos() {
               type="phone"
               label="Seu telefone *"
               placeholder="Digite seu telefone"
+              value={inputInfos.phone} 
               onInputChange={handleInputChange}
             />
           </div>
@@ -100,7 +114,8 @@ export default function BasicInfos() {
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-3">
               <ButtonComponent
-                text="Ir para o cardápio"
+                // text="Ir para o cardápio"
+                text="Ir para o prato do dia"
                 textColor="#fff"
                 backgroundColor="#6D9773"
                 onClick={nextStep}
