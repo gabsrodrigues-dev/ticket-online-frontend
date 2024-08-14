@@ -3,10 +3,11 @@ import { ToastContainer } from "react-toastify";
 import TitleAndSubtitle from "./components/TitleAndSubtitle/TitleAndSubtitle";
 import Page404 from "./pages/Page404/Page404";
 import Home from "./pages/Home/Home";
-import BasicInfos from "./pages/basicInfos/basicInfos";
-import Products from "./pages/products/Products"
-import ProductsPurchase from "./pages/productPurchase/ProductPurchase";
+import BasicInfos from "./pages/BasicInfos/BasicInfos";
+import Products from "./pages/Products/Products"
+import ProductsPurchase from "./pages/ProductPurchase/ProductPurchase";
 import "./index.css"
+import Order from "./pages/Order/Order";
 
 function App() {
   return (
@@ -39,10 +40,18 @@ function App() {
             }
           />
           <Route
-            path="/order"
+            path="/order/start/:productAlias"
             element={
               <>
                 <TitleAndSubtitle title="Pedido" /> <ProductsPurchase />
+              </>
+            }
+          />
+          <Route
+            path="/order/payment/:checkoutId"
+            element={
+              <>
+                <TitleAndSubtitle title="Pedido" /> <Order />
               </>
             }
           />
