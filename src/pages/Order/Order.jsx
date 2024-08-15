@@ -151,7 +151,7 @@ export default function Order() {
                           Pagamento para
                         </p>
                         <p className="text-sm text-black leading-none">
-                          Gabriel Rodrigues Torres
+                          Gabriel Rodrigues Torres - ***.307.606-**
                         </p>
                       </div>
                       <div>
@@ -159,7 +159,7 @@ export default function Order() {
                           Instituição financeira
                         </p>
                         <p className="text-sm text-black leading-none">
-                        MERCADO PAGO
+                        MERCADO PAGO IP LTDA.
                         </p>
                       </div>
                     </div>

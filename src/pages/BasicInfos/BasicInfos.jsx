@@ -47,7 +47,10 @@ export default function BasicInfos() {
         "error",
         "Você precisa concordar com os Termos e Condições e a Política de Privacidade."
       );
-    await EncryptedLocalStorage.put("basicInfos",basicInfos);
+
+    basicInfos.phone = String(basicInfos.phone.replace(/[^\d]/g, ""));
+
+    await EncryptedLocalStorage.put("basicInfos", basicInfos);
     // window.location.href = "/products";
     window.location.href = "/order/start/strogonoff-com-refrigerante";
   };
@@ -56,45 +59,45 @@ export default function BasicInfos() {
     window.location.href = "/";
   };
 
-  useEffect(()=>{
-    const loadInfos = async ()=>{
+  useEffect(() => {
+    const loadInfos = async () => {
       const basicInfos = await EncryptedLocalStorage.get("basicInfos");
-      if(basicInfos){
+      if (basicInfos) {
         setInputInfos(basicInfos);
       }
-    }
+    };
     loadInfos();
-  },[])
+  }, []);
 
   return (
     <main className="first-mobile-align h-full">
       <main className="second-mobile-align flex flex-col h-full justify-between gap-6">
-      <div className="flex w-full h-full justify-center items-center">
+        <div className="flex w-full h-full justify-center items-center">
           <img src="/images/logos/colored-logo.png" className="max-w-[150px]" />
         </div>
-          <span className="text-md leading-tight">
-            Antes de fazer o seu pedido, precisamos que você nos informe alguns
-            dados.
-          </span>
+        <span className="text-md leading-tight">
+          Antes de fazer o seu pedido, precisamos que você nos informe alguns
+          dados.
+        </span>
 
-          <div className="flex flex-col gap-3">
-            <InputComponent
-              name="name"
-              label="Seu nome *"
-              type="text"
-              placeholder="Digite o seu nome"
-              value={inputInfos.name} 
-              onInputChange={handleInputChange}
-            />
-            <InputComponent
-              name="phone"
-              type="phone"
-              label="Seu telefone *"
-              placeholder="Digite seu telefone"
-              value={inputInfos.phone} 
-              onInputChange={handleInputChange}
-            />
-          </div>
+        <div className="flex flex-col gap-3">
+          <InputComponent
+            name="name"
+            label="Seu nome *"
+            type="text"
+            placeholder="Digite o seu nome"
+            value={inputInfos.name}
+            onInputChange={handleInputChange}
+          />
+          <InputComponent
+            name="phone"
+            type="phone"
+            label="Seu telefone *"
+            placeholder="Digite seu telefone"
+            value={inputInfos.phone}
+            onInputChange={handleInputChange}
+          />
+        </div>
 
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
