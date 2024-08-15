@@ -6,20 +6,33 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { EncryptedLocalStorage } from "../../services/localStorage/localStorage.service";
 import { ToastifyElement } from "../../components/Toastify/ToastifyElement";
+import Loading from "../../components/Loading/Loading";
 
 export default function ProductsPurchase() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [isLoading, setIsLoading] = useState(false)
   const productAlias = useParams().productAlias;
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `https://api-ir.gabsrodrigues.com.br/api/canteen/getUniqueProduct?slug=${productAlias}`
-        );
+        // const response = await axios.get(
+        //   `https://api-ir.gabsrodrigues.com.br/api/canteen/getUniqueProduct?slug=${productAlias}`
+        // );
 
-        setSelectedProduct(response.data);
+        // setSelectedProduct(response.data);
+
+        // Manual to better performance
+        setSelectedProduct({
+          "product_title": "Strogonoff com Refrigerante",
+          "product_description": "Fica delicioso à noite!",
+          "product_complete_description": "Este produto contém uma marmita com strogonoff, arroz e batata palha, acompanhado de um refrigerante 150ml. Será entregue ao final do culto de domingo.",
+          "product_price": 15,
+          "image_src": "/images/temp/actual_product.webp",
+          "product_alias": "strogonoff-com-refrigerante"
+      })
+
       } catch (error) {
         console.error("Error fetching product:", error);
        return ToastifyElement("error", "Ocorreu um erro ao buscar o produto.");
@@ -29,6 +42,7 @@ export default function ProductsPurchase() {
   }, []);
 
   const confirmOrder = async () => {
+    setIsLoading(true)
     try {
     await EncryptedLocalStorage.put("order",{
       product: selectedProduct,
@@ -43,20 +57,23 @@ export default function ProductsPurchase() {
       product_alias: productAlias,
       quantity,
     };
-    const response = await axios.post("https://api-ir.gabsrodrigues.com.br/api/sales/createFinance",payload)
+    const response = await axios.post("https://sandbox-api-ir.gabsrodrigues.com.br/api/sales/createFinance",payload)
     if (response.data.id) {
       window.location.href = `/order/finish/${response.data.id}`;
     } else {
+      setIsLoading(false)
       return ToastifyElement("error", "Ocorreu um erro ao criar o pedido.");
     }
   } catch (error) {
     console.error("Error confirming order:", error);
+    setIsLoading(false)
    return ToastifyElement("error", "Ocorreu um erro ao confirmar o pedido.");
   }
   };
 
   return (
     <main className="first-mobile-align bg-[#EEEEEE]">
+      <Loading isLoading={isLoading} />
       <main className="second-mobile-align flex flex-col h-full justify-between gap-6">
         <section className="flex flex-col h-full gap-10">
           <Header />
