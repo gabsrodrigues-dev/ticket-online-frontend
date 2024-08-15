@@ -9,11 +9,13 @@ import StepItem from "../../components/StepItem/StepItem";
 import QRCode from "react-qr-code";
 import moment from "moment";
 import html2canvas from "html2canvas";
+import Loading from "../../components/Loading/Loading";
 
 export default function Order() {
   const [checkoutObject, setCheckoutObject] = useState(null);
   const [orderStep, setOrderStep] = useState(1);
   const [screenshotTime, setScreenshotTime] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const checkoutId = useParams().checkoutId;
 
   const handleCopyQrCode = () => {
@@ -23,16 +25,19 @@ export default function Order() {
 
   const fetchCheckout = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
-        `https://api-ir.gabsrodrigues.com.br/api/sales/getOrderContent?finance_identifier=${checkoutId}`
+        `https://sandbox-api-ir.gabsrodrigues.com.br/api/sales/getOrderContent?finance_identifier=${checkoutId}`
       );
       setCheckoutObject(response.data.data);
       if (response.data.data.checkout_status === "pending") setOrderStep(1);
       if (response.data.data.checkout_status === "ready") setOrderStep(2);
       if (response.data.data.checkout_status === "completed") setOrderStep(3);
       if (response.data.data.checkout_status === "refunded") setOrderStep(4);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching checkout:", error);
+      setIsLoading(false);
       return ToastifyElement("error", "Ocorreu um erro ao buscar o pedido.");
     }
   };
@@ -115,6 +120,7 @@ export default function Order() {
 
   return (
     <main className="first-mobile-align bg-[#EEEEEE]">
+      <Loading isLoading={isLoading} />
       <main className="second-mobile-align flex flex-col h-full justify-between gap-6">
         <section className="flex flex-col h-full gap-10">
           <Header />
@@ -274,33 +280,38 @@ export default function Order() {
                           screenshotTime && "px-2 mb-5"
                         }`}
                         id="screenshotArea">
-                          {checkoutObject.checkout_status !== "completed"&&(
-                        <img
-                          alt="Logo da Igreja"
-                          src="/images/logos/white-logo.png"
-                          className="absolute -top-5 left-0 w-full h-auto opacity-25 select-none pointer-events-none"
-                        />)}
+                        {checkoutObject.checkout_status !== "completed" && (
+                          <img
+                            alt="Logo da Igreja"
+                            src="/images/logos/white-logo.png"
+                            className="absolute -top-5 left-0 w-full h-auto opacity-25 select-none pointer-events-none"
+                          />
+                        )}
                         <span className="text-2xl font-bold z-10">
                           Meu ticket
                         </span>
                         <p className="text-sm text-black leading-none z-10">
-                          {checkoutObject.checkout_status === "completed" ? "Seu pedido já foi retirado!" : "Seu pedido já está pronto!"}
+                          {checkoutObject.checkout_status === "completed"
+                            ? "Seu pedido já foi retirado!"
+                            : "Seu pedido já está pronto!"}
                         </p>
-                        {checkoutObject.checkout_status !== "completed" &&(<>
-                        <p className="text-sm text-black leading-none z-10">
-                          Agora basta apresentar seu código no caixa para
-                          retirar seu pedido
-                        </p>
-                        <p className="text-xs text-black leading-none">
-                          Aviso:{" "}
-                          <span className="font-normal text-black z-10">
-                            <i>
-                              Por favor, evite compartilhar seus ticktes com
-                              outras pessoas!
-                            </i>
-                          </span>
-                        </p>
-                        </>)}
+                        {checkoutObject.checkout_status !== "completed" && (
+                          <>
+                            <p className="text-sm text-black leading-none z-10">
+                              Agora basta apresentar seu código no caixa para
+                              retirar seu pedido
+                            </p>
+                            <p className="text-xs text-black leading-none">
+                              Aviso:{" "}
+                              <span className="font-normal text-black z-10">
+                                <i>
+                                  Por favor, evite compartilhar seus ticktes com
+                                  outras pessoas!
+                                </i>
+                              </span>
+                            </p>
+                          </>
+                        )}
                         <div className="py-6 flex items-center justify-center">
                           <div
                             className={`flex justify-center items-center text-center max-w-[70%] w-fit px-6 p-4 bg-[#D8EBDB] rounded-lg ${
