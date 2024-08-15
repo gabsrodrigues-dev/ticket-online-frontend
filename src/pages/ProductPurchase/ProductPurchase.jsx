@@ -57,7 +57,7 @@ export default function ProductsPurchase() {
       product_alias: productAlias,
       quantity,
     };
-    const response = await axios.post("https://sandbox-api-ir.gabsrodrigues.com.br/api/sales/createFinance",payload)
+    const response = await axios.post("https://api-ir.gabsrodrigues.com.br/api/sales/createFinance",payload)
     if (response.data.id) {
       window.location.href = `/order/finish/${response.data.id}`;
     } else {
