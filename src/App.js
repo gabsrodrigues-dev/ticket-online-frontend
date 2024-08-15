@@ -48,7 +48,7 @@ function App() {
             }
           />
           <Route
-            path="/order/payment/:checkoutId"
+            path="/order/finish/:checkoutId"
             element={
               <>
                 <TitleAndSubtitle title="Pedido" /> <Order />

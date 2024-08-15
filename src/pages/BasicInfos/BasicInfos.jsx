@@ -40,6 +40,7 @@ export default function BasicInfos() {
       return ToastifyElement("error", "O nome não pode estar vazio.");
     if (basicInfos.phone === "")
       return ToastifyElement("error", "O telefone não pode estar vazio.");
+    if (basicInfos.phone.charAt(5) !== "9") return ToastifyElement("error", "O telefone está incorreto.");
     if (basicInfos.phone.length < 15)
       return ToastifyElement("error", "O telefone está incompleto.");
     if (!basicInfos.privacity)
@@ -48,6 +49,14 @@ export default function BasicInfos() {
         "Você precisa concordar com os Termos e Condições e a Política de Privacidade."
       );
 
+    const nameParts = basicInfos.name.trim().split(/\s+/);
+
+    if (nameParts.length === 1) {
+      const firstName = nameParts[0];
+      const initial = firstName.charAt(0).toUpperCase();
+      basicInfos.name = `${firstName} ${initial}`;
+    }
+  
     basicInfos.phone = String(basicInfos.phone.replace(/[^\d]/g, ""));
 
     await EncryptedLocalStorage.put("basicInfos", basicInfos);
