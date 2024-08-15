@@ -27,7 +27,7 @@ export default function Order() {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `https://sandbox-api-ir.gabsrodrigues.com.br/api/sales/getOrderContent?finance_identifier=${checkoutId}`
+        `https://api-ir.gabsrodrigues.com.br/api/sales/getOrderContent?finance_identifier=${checkoutId}`
       );
       setCheckoutObject(response.data.data);
       if (response.data.data.checkout_status === "pending") setOrderStep(1);
