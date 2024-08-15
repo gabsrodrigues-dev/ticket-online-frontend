@@ -8,8 +8,8 @@ import { ToastifyElement } from "../../components/Toastify/ToastifyElement";
 
 export default function BasicInfos() {
   const [selectsState, setSelectsState] = useState({
-    privacity: false,
-    updates: false
+    // privacity: false,
+    storeData: false
   });
 
   const [inputInfos, setInputInfos] = useState({
@@ -34,8 +34,8 @@ export default function BasicInfos() {
 
   const nextStep = async () => {
     let basicInfos = inputInfos;
-    basicInfos.privacity = selectsState.privacity;
-    basicInfos.updates = selectsState.updates;
+    // basicInfos.privacity = selectsState.privacity;
+    basicInfos.storeData = selectsState.storeData;
     if (basicInfos.name === "")
       return ToastifyElement("error", "O nome não pode estar vazio.");
     if (basicInfos.phone === "")
@@ -43,11 +43,11 @@ export default function BasicInfos() {
     if (basicInfos.phone.charAt(5) !== "9") return ToastifyElement("error", "O telefone está incorreto.");
     if (basicInfos.phone.length < 15)
       return ToastifyElement("error", "O telefone está incompleto.");
-    if (!basicInfos.privacity)
-      return ToastifyElement(
-        "error",
-        "Você precisa concordar com os Termos e Condições e a Política de Privacidade."
-      );
+    // if (!basicInfos.privacity)
+    //   return ToastifyElement(
+    //     "error",
+    //     "Você precisa concordar com os Termos e Condições e a Política de Privacidade."
+    //   );
 
     const nameParts = basicInfos.name.trim().split(/\s+/);
 
@@ -71,7 +71,7 @@ export default function BasicInfos() {
   useEffect(() => {
     const loadInfos = async () => {
       const basicInfos = await EncryptedLocalStorage.get("basicInfos");
-      if (basicInfos) {
+      if (basicInfos && basicInfos.storeData) {
         setInputInfos(basicInfos);
       }
     };
@@ -110,16 +110,16 @@ export default function BasicInfos() {
 
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
-            <SelectComponent
+            {/* <SelectComponent
               label="Concordo com os Termos e Condições e a Política de Privacidade. *"
               id="privacity"
               value={selectsState.privacity}
               onChange={selectValue}
-            />
+            /> */}
             <SelectComponent
-              label="Quero receber atualizações via Whatsapp das próximas cantinas."
-              id="updates"
-              value={selectsState.updates}
+              label="Quero guardar os meus dados para agilizar nas próximas cantinas."
+              id="storeData"
+              value={selectsState.storeData}
               onChange={selectValue}
             />
           </div>
