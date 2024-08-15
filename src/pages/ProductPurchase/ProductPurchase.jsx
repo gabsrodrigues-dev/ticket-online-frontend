@@ -45,7 +45,7 @@ export default function ProductsPurchase() {
     };
     const response = await axios.post("https://api-ir.gabsrodrigues.com.br/api/sales/createFinance",payload)
     if (response.data.id) {
-      window.location.href = `/order/payment/${response.data.id}`;
+      window.location.href = `/order/finish/${response.data.id}`;
     } else {
       return ToastifyElement("error", "Ocorreu um erro ao criar o pedido.");
     }

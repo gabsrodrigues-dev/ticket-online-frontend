@@ -13,7 +13,7 @@ export default function SelectComponent({ label, id, onChange }) {
     <div
       className="flex gap-2 items-center cursor-pointer w-fit"
       onClick={handleClick}>
-      <span className="flex justify-center items-center max-sm:hidden">
+      <span className="flex justify-center items-center">
         <div
           className={`flex items-center justify-center transition-all duration-300 w-6 h-6 rounded-[3px] border ${
             isSelected
@@ -29,7 +29,7 @@ export default function SelectComponent({ label, id, onChange }) {
           </span>
         </div>
       </span>
-      <span className="text-md select-none">{label}</span>
+      <span className="text-sm select-none">{label}</span>
     </div>
   );
 }

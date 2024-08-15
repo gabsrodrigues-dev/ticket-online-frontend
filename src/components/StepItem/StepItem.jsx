@@ -5,7 +5,7 @@ export default function StepItem ({ labelMarginLeft, step, currentStep, icon, la
   
     return (
       <div className="flex items-center">
-        <div className={`flex justify-center items-center w-12 h-12 rounded-full ${isActive || isPassed ? "bg-[#6D9773]" : "bg-[#ECECEC]"} mb-8 relative`}>
+        <div className={`flex justify-center items-center w-12 h-12 rounded-full ${step === 4 ? "bg-red-300" : isActive || isPassed ? "bg-[#6D9773]" : "bg-[#ECECEC]"} mb-8 relative`}>
           <span style={{ marginLeft: labelMarginLeft }} className={`absolute -bottom-6 w-full text-center text-xs ${isActive ? "text-black" : "text-[#D6D6D6]"}`}>
             {label}
           </span>
